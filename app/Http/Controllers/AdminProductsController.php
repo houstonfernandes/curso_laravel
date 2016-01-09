@@ -2,6 +2,7 @@
 
 namespace CodeCommerce\Http\Controllers;
 
+use CodeCommerce\Product;
 use Illuminate\Http\Request;
 
 use CodeCommerce\Http\Requests;
@@ -18,7 +19,7 @@ class AdminProductsController extends Controller
     public function index()
     {
         $products = $this->products->all();
-        return view('category_list', compact('products'));
+        return view('product_list', compact('products'));
         //
     }
 
