@@ -18,7 +18,7 @@ class AdminCategoriesController extends Controller
     public function index()
     {
         $categories = $this->categories->all();
-        return view('category_list', compact('categories'));
+        return view('admin.category.list', compact('categories'));
     }
 
     public function create()
@@ -60,4 +60,13 @@ class AdminCategoriesController extends Controller
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-    }}
+    }
+
+    /**
+     * processar dados do post e salvar em model
+     */
+    public function store()
+    {
+
+    }
+}

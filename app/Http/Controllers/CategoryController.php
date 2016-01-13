@@ -21,7 +21,7 @@ class CategoryController extends Controller
     public function listar()
     {
         $categories = $this->categories->all();
-        return view('category_list', compact('categories'));
+        return view('admin.category.list', compact('categories'));
 
     }
 }

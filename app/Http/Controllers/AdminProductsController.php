@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Route;
 
 class AdminProductsController extends Controller
 {
@@ -19,7 +20,10 @@ class AdminProductsController extends Controller
     public function index()
     {
         $products = $this->products->all();
-        return view('product_list', compact('products'));
+        //echo Route::currentRouteName();
+        echo route('admin.products.list');//teste exibe rota de categories
+        //echo route('admin.products.list');//nao funciona
+        return view('admin.product.list', compact('products'));
         //
     }
 
@@ -63,5 +67,13 @@ class AdminProductsController extends Controller
         } catch (Exception $e) {
             echo $e->getMessage();
         }
+    }
+
+    /**
+     * processar dados do post e salvar em model
+     */
+    public function store()
+    {
+
     }
 }

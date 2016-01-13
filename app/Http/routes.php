@@ -11,20 +11,22 @@
 |
 */
 Route::pattern('id','[0-9]+');
-Route::group(['prefix'=>'admin'],function(){
-    Route::group(['prefix'=>'products'], function(){
-        get('/', ['as' => 'product_list', 'uses' => 'AdminProductsController@index']);
-        get('create', ['as' => 'product_create', 'uses' => 'AdminProductsController@create']);
-        get('retrieve/{id}',['as' => 'product_retrieve', 'uses' => 'AdminProductsController@retrieve']);
-        get('update/{id}', ['as' => 'product_update', 'uses' => 'AdminProductsController@update']);
-        get('delete/{id}', ['as' => 'product_delete', 'uses' => 'AdminProductsController@delete']);
+Route::group(['prefix'=>'admin', 'as' => 'admin.'],function(){
+    Route::group(['prefix'=>'products', 'as' => 'products.'], function(){
+        get('/', ['as' => 'list', 'uses' => 'AdminProductsController@index']);
+        post('/', ['as' => 'store', 'uses' => 'AdminProductsController@store']);
+        get('create', ['as' => 'create', 'uses' => 'AdminProductsController@create']);
+        get('retrieve/{id}',['as' => 'retrieve', 'uses' => 'AdminProductsController@retrieve']);
+        put('update/{id}', ['as' => 'update', 'uses' => 'AdminProductsController@update']);//usar attr hidden name=_method value=PUT
+        delete('delete/{id}', ['as' => 'delete', 'uses' => 'AdminProductsController@delete']);//usar attr hidden name=_method value=DELETE
     });
-    Route::group(['prefix'=>'categories'], function(){
-        get('/', ['as' => 'categories_list', 'uses' => 'AdminCategoriesController@index']);
-        get('create', ['as' => 'categories_create', 'uses' => 'AdminCategoriesController@create']);
-        get('retrieve/{id}',['as' => 'categories_retrieve', 'uses' => 'AdminCategoriesController@retrieve']);
-        get('update/{id}', ['as' => 'categories_update', 'uses' => 'AdminCategoriesController@update']);
-        get('delete/{id}', ['as' => 'categories_delete', 'uses' => 'AdminCategoriesController@delete']);
+    Route::group(['prefix'=>'categories', 'as' => 'categories.'], function(){
+        get('/', ['as' => 'list', 'uses' => 'AdminCategoriesController@index']);
+        post('/', ['as' => 'store', 'uses' => 'AdminCategoriesController@store']);
+        get('create', ['as' => 'create', 'uses' => 'AdminCategoriesController@create']);
+        get('retrieve/{id}',['as' => 'retrieve', 'uses' => 'AdminCategoriesController@retrieve']);
+        put('update/{id}', ['as' => 'update', 'uses' => 'AdminCategoriesController@update']);
+        delete('delete/{id}', ['as' => 'delete', 'uses' => 'AdminCategoriesController@delete']);
     });
 });
 
