@@ -18,12 +18,12 @@ class AdminCategoriesController extends Controller
     public function index()
     {
         $categories = $this->categories->all();
-        return view('admin.category.list', compact('categories'));
+        return view('admin.category.index', compact('categories'));
     }
 
     public function create()
     {
-        echo"create category";
+        return view('admin.category.create');
     }
 
     public function retrieve($id)
@@ -65,8 +65,13 @@ class AdminCategoriesController extends Controller
     /**
      * processar dados do post e salvar em model
      */
-    public function store()
+    public function store(Request $request)
     {
+        $input = $request->all();
+        $category = $this->categories->fill($input);//dados do request passados para o model
+        $category->save();//persiste no banco
+
+        redirect()->route('admin.categories.index');
 
     }
 }

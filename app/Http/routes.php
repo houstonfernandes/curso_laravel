@@ -12,16 +12,18 @@
 */
 Route::pattern('id','[0-9]+');
 Route::group(['prefix'=>'admin', 'as' => 'admin.'],function(){
+
     Route::group(['prefix'=>'products', 'as' => 'products.'], function(){
-        get('/', ['as' => 'list', 'uses' => 'AdminProductsController@index']);
+        get('/', ['as' => '', 'uses' => 'AdminProductsController@index']);
         post('/', ['as' => 'store', 'uses' => 'AdminProductsController@store']);
         get('create', ['as' => 'create', 'uses' => 'AdminProductsController@create']);
         get('retrieve/{id}',['as' => 'retrieve', 'uses' => 'AdminProductsController@retrieve']);
         put('update/{id}', ['as' => 'update', 'uses' => 'AdminProductsController@update']);//usar attr hidden name=_method value=PUT
         delete('delete/{id}', ['as' => 'delete', 'uses' => 'AdminProductsController@delete']);//usar attr hidden name=_method value=DELETE
     });
+
     Route::group(['prefix'=>'categories', 'as' => 'categories.'], function(){
-        get('/', ['as' => 'list', 'uses' => 'AdminCategoriesController@index']);
+        get('/', ['as' => 'index', 'uses' => 'AdminCategoriesController@index']);
         post('/', ['as' => 'store', 'uses' => 'AdminCategoriesController@store']);
         get('create', ['as' => 'create', 'uses' => 'AdminCategoriesController@create']);
         get('retrieve/{id}',['as' => 'retrieve', 'uses' => 'AdminCategoriesController@retrieve']);
