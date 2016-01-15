@@ -18,60 +18,53 @@ class AdminCategoriesController extends Controller
     public function index()
     {
         $categories = $this->categories->all();
-        return view('admin.category.index', compact('categories'));
+        return view('admin.categories.index', compact('categories'));
     }
 
     public function create()
     {
-        return view('admin.category.create');
+        return view('admin.categories.create');
     }
 
     public function retrieve($id)
     {
-        try{
-            if($id==null)
-                throw new Exception('Id não informado!');
             echo 'retrieve'.$id . "<br>";
             echo $this->categories->find($id)->name;
-        }
-        catch( Exception $e){
-            echo $e->getMessage();
-        }
-    }
-
-    public function update($id)
-    {
-        try {
-            if ($id == null)
-                throw new Exception('Id não informado!');
-            echo 'update' . $id;
-
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
     }
 
     public function delete($id)
     {
-        try {
-            if ($id == null)
-                throw new Exception('Id não informado!');
-            echo 'delete' . $id . "<br>";
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
+            $category = $this->categories->find($id);
+            $category->delete();
+            return redirect()->route('admin.categories.index');
+    }
+
+    public function edit($id)
+    {
+        $category = $this->categories->find($id);
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
      * processar dados do post e salvar em model
      */
-    public function store(Request $request)
+    public function update(Requests\CategoryRequest $request, $id)
+    {
+        $category = $this->categories->find($id);
+        $category->update($request->all());
+
+        return redirect()->route('admin.categories.index');
+    }
+    /**
+     * processar dados do post e salvar em model
+     */
+    public function store(Requests\CategoryRequest $request)
     {
         $input = $request->all();
         $category = $this->categories->fill($input);//dados do request passados para o model
         $category->save();//persiste no banco
 
-        redirect()->route('admin.categories.index');
-
+        return redirect()->route('admin.categories.index');
     }
+
 }

@@ -21,9 +21,9 @@ class AdminProductsController extends Controller
     {
         $products = $this->products->all();
         //echo Route::currentRouteName();
-        echo route('admin.products.list');//teste exibe rota de categories
+        echo route('admin.products.index');//teste exibe rota de categories
         //echo route('admin.products.list');//nao funciona
-        return view('admin.product.list', compact('products'));
+        return view('admin.products.list', compact('products'));
         //
     }
 
