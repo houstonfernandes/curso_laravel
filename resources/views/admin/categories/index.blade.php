@@ -21,8 +21,10 @@
                 <td>{{$category->id}}</td>
                 <td>{{$category->name}}</td>
                 <td>{{$category->description}}</td>
-                <td><a class='btn btn-primary' href="{{route('admin.categories.edit',['id' => $category->id])}}"> edit</a></td>
-                <td><a class='btn btn-primary' href="{{route('admin.categories.delete',['id' => $category->id])}}"> delete</a></td>
+                <td>
+                    <a class='btn btn-primary' href="{{route('admin.categories.edit',['id' => $category->id])}}"> edit</a>
+                    <a class='btn btn-primary' href="{{route('admin.categories.delete',['id' => $category->id])}}"> delete</a>
+                </td>
             </tr>
         @endforeach
             </tbody>

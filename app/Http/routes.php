@@ -18,6 +18,7 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.'],function(){
         post('/', ['as' => 'store', 'uses' => 'AdminProductsController@store']);
         get('create', ['as' => 'create', 'uses' => 'AdminProductsController@create']);
         get('retrieve/{id}',['as' => 'retrieve', 'uses' => 'AdminProductsController@retrieve']);
+        get('edit/{id}', ['as' => 'edit', 'uses' => 'AdminProductsController@edit']);
         put('update/{id}', ['as' => 'update', 'uses' => 'AdminProductsController@update']);//usar attr hidden name=_method value=PUT
         get('delete/{id}', ['as' => 'delete', 'uses' => 'AdminProductsController@delete']);//usar attr hidden name=_method value=DELETE
     });

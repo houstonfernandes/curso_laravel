@@ -20,60 +20,55 @@ class AdminProductsController extends Controller
     public function index()
     {
         $products = $this->products->all();
-        //echo Route::currentRouteName();
-        echo route('admin.products.index');//teste exibe rota de categories
-        //echo route('admin.products.list');//nao funciona
-        return view('admin.products.list', compact('products'));
-        //
+        return view('admin.products.index', compact('products'));
     }
 
 
     public function create()
     {
-        echo"create product";
+        return view('admin.products.create');
     }
 
     public function retrieve($id)
     {
-        try{
-            if($id==null)
-                throw new Exception('Id não informado!');
-            echo 'retrieve'.$id . "<br>";
             echo $this->products->find($id)->name;
-        }
-        catch( Exception $e){
-            echo $e->getMessage();
-        }
     }
 
-    public function update($id)
+    public function edit($id)
     {
-        try {
-            if ($id == null)
-                throw new Exception('Id não informado!');
-            echo 'update' . $id;
+        $product = $this->products->find($id);
+        return view('admin.products.edit', compact('product'));
+    }
 
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
+    public function update(Requests\ProductRequest $request, $id)
+    {
+        $product = $this->products->find($id);
+        $product->update($request->all());
+
+        return redirect()->route('admin.products.index');
     }
 
     public function delete($id)
     {
-        try {
-            if ($id == null)
-                throw new Exception('Id não informado!');
-            echo 'delete' . $id . "<br>";
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
+        $product = $this->products->find($id);
+        $product->delete();
+
+        return redirect()->route('admin.products.index');
     }
 
     /**
      * processar dados do post e salvar em model
      */
-    public function store()
+    public function store(Requests\ProductRequest $request)
     {
+        $input = $request->all();
+        $product = $this->products->fill($input);//dados do request passados para o model
+//        $product->recommend = $request->input('recommend',false);//preencher checkbox caso  = false outra solucao ao hidden
+//        $product->featured = $request->input('featured',false);//preencher checkbox caso  = false
+
+        $product->save();//persiste no banco
+
+        return redirect()->route('admin.products.index');
 
     }
 }
