@@ -32,6 +32,11 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.'],function(){
         put('update/{id}', ['as' => 'update', 'uses' => 'AdminCategoriesController@update']);
         get('delete/{id}', ['as' => 'delete', 'uses' => 'AdminCategoriesController@delete']);
     });
+
+    Route::group(['prefix'=>'users', 'as' => 'users.'], function(){
+        get('/', ['as' => 'index', 'uses' => 'AdminUsersController@index']);
+    });
+
 });
 
 Route::get('/', function () {
