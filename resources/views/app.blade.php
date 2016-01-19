@@ -32,6 +32,13 @@
                                     Products
                                 </a>
                             </li>
+                            </li>
+                            <li>
+                                <a href='{{route('admin.users.index')}}'>
+                                    Users
+                                </a>
+                            </li>
+
                         </ul>
                     </li>
                 </ul>
