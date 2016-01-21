@@ -29,5 +29,8 @@
         @endforeach
             </tbody>
         </table>
+        <div id="page">
+            {!! $categories->render() !!}
+        </div>
     </div>
 @endsection

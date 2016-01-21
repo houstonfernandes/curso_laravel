@@ -26,5 +26,9 @@
             @endforeach
             </tbody>
         </table>
+        <div id="pages">
+            {!! $users->render() !!}
+        </div>
+
     </div>
 @endsection

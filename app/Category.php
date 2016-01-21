@@ -8,4 +8,11 @@ class Category extends Model
 {
     protected $table = 'categories';
     protected $fillable = ['name', 'description'];
+
+/**
+ * listar produtos da categoria
+ */
+    public function products(){
+        return $this->hasMany('CodeCommerce\Product');
+    }
 }

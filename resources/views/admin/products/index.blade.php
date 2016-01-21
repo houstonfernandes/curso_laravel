@@ -13,8 +13,7 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Price</th>
-                <th>Featured</th>
-                <th>recommend</th>
+                <th>Category</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -25,8 +24,7 @@
                     <td>{{$product->name}}</td>
                     <td>{{$product->description}}</td>
                     <td>{{$product->price}}</td>
-                    <td>{{$product->featured}}</td>
-                    <td>{{$product->recommend}}</td>
+                    <td>{{$product->category->name}}</td>
                     <td>
                         <a class='btn btn-primary' href="{{route('admin.products.edit',['id' => $product->id])}}"> edit</a>
                         <a class='btn btn-primary' href="{{route('admin.products.delete',['id' => $product->id])}}"> delete</a>
@@ -35,5 +33,8 @@
             @endforeach
             </tbody>
         </table>
+        <div id="pages">
+            {!! $products->render() !!}
+        </div>
     </div>
 @endsection
