@@ -21,6 +21,8 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.'],function(){
         get('edit/{id}', ['as' => 'edit', 'uses' => 'AdminProductsController@edit']);
         put('update/{id}', ['as' => 'update', 'uses' => 'AdminProductsController@update']);//usar attr hidden name=_method value=PUT
         get('delete/{id}', ['as' => 'delete', 'uses' => 'AdminProductsController@delete']);//usar attr hidden name=_method value=DELETE
+        get('create_image', ['as' => 'create_image', 'uses' => 'AdminProductsController@create_image']);
+
     });
 
     Route::group(['prefix'=>'categories', 'as' => 'categories.'], function(){
@@ -31,6 +33,12 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.'],function(){
         get('edit/{id}', ['as' => 'edit', 'uses' => 'AdminCategoriesController@edit']);
         put('update/{id}', ['as' => 'update', 'uses' => 'AdminCategoriesController@update']);
         get('delete/{id}', ['as' => 'delete', 'uses' => 'AdminCategoriesController@delete']);
+    });
+
+    Route::group(['prefix'=>'products_images', 'as' => 'products_images.'], function(){
+        get('/{id}', ['as' => 'index', 'uses' => 'AdminProductsController@images']);
+        get('create/{id}', ['as' => 'create', 'uses' => 'AdminProductsController@createImage']);
+        post('store/{id}', ['as' => 'store', 'uses' => 'AdminProductsController@storeImage']);
     });
 
     Route::group(['prefix'=>'users', 'as' => 'users.'], function(){

@@ -4,12 +4,14 @@ namespace CodeCommerce\Http\Controllers;
 
 use CodeCommerce\Product;
 use CodeCommerce\Category;
+use CodeCommerce\ProductImage;
 use Illuminate\Http\Request;
 
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 class AdminProductsController extends Controller
 {
     protected $products;
@@ -76,4 +78,42 @@ class AdminProductsController extends Controller
         return redirect()->route('admin.products.index');
 
     }
+
+    /**
+     exibe a listagem de imagens
+    @param $id id de product
+    */
+    public function images($id)
+    {
+        $product = $this->products->find($id);
+        return view('admin.products.images', compact('product'));
+    }
+
+    /**
+    criar imagem para produto
+    @param $id id de product
+     */    public function createImage($id)
+    {
+        $product = $this->products->find($id);
+        return view('admin.products.create_image', compact('product'));
+    }
+
+    /**
+     * processar dados do post e salvar em model
+     */
+    public function storeImage(Request $request, $id, ProductImage $productImage)
+    {
+        $file = $request->file('image');
+       // var_dump($file); exit();
+        $extension = $file->getClientOriginalExtension();
+        $image = $productImage::create(['product_id' => $id, 'extension' => $extension]);//gravar no banco
+        //var_dump($image);exit();
+        //gravar no disco config/filesystem.php
+        Storage::disk('public_local')->put($image->id . '.' . $extension, File::get($file));
+        //Storage::disk('public_local')->put($image->id.'.'.$extension, File::get($file));
+
+        return redirect()->route('admin.products_images.index', $id);
+
+    }
+
 }

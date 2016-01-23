@@ -41,11 +41,19 @@ return [
     |
     */
 
+    'publico' => 'public_local',
+
+
     'disks' => [
 
         'local' => [
             'driver' => 'local',
             'root'   => storage_path('app'),
+        ],
+
+      'public_local' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/uploads',
         ],
 
         'ftp' => [

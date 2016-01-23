@@ -27,6 +27,7 @@
                     <td>{{$product->category->name}}</td>
                     <td>
                         <a class='btn btn-primary' href="{{route('admin.products.edit',['id' => $product->id])}}"> edit</a>
+                        <a class='btn btn-primary' href="{{route('admin.products_images.index',['id' => $product->id])}}"> images</a>
                         <a class='btn btn-primary' href="{{route('admin.products.delete',['id' => $product->id])}}"> delete</a>
                     </td>
                 </tr>

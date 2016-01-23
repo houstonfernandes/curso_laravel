@@ -23,4 +23,10 @@ class Product extends Model
         return $this->belongsTo('CodeCommerce\Category');
     }
 
+    /**
+     * busca as imagens do produto
+     */
+    public function images(){
+        return $this->hasMany('CodeCommerce\ProductImage');
+    }
 }
