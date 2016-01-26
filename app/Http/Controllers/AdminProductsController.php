@@ -99,7 +99,7 @@ class AdminProductsController extends Controller
     }
 
     /**
-     * processar dados do post e salvar em model
+     * salvar imagem de produto
      */
     public function storeImage(Request $request, $id, ProductImage $productImage)
     {
@@ -116,4 +116,16 @@ class AdminProductsController extends Controller
 
     }
 
+    public function deleteImage(ProductImage $productImage, $id)
+    {
+        $image = $productImage->find($id);
+        $product = $image->product; //recuperar product
+
+        if(file_exists(public_path(). '/uploads/' . $image->id . '.' . $image->extension))
+            Storage::disk('public_local')->delete($image->id . '.' . $image->extension);//remover arquivo
+
+
+        $image->delete();//remover imagem no banco
+        return redirect(route('admin.products_images.index', ['id' => $product->id]));
+    }
 }

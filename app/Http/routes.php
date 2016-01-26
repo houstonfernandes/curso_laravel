@@ -39,6 +39,7 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.'],function(){
         get('/{id}', ['as' => 'index', 'uses' => 'AdminProductsController@images']);
         get('create/{id}', ['as' => 'create', 'uses' => 'AdminProductsController@createImage']);
         post('store/{id}', ['as' => 'store', 'uses' => 'AdminProductsController@storeImage']);
+        get('delete/{id}', ['as' => 'delete', 'uses' => 'AdminProductsController@deleteImage']);
     });
 
     Route::group(['prefix'=>'users', 'as' => 'users.'], function(){

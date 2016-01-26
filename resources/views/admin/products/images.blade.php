@@ -11,6 +11,7 @@
             <tr>
                 <th>Id</th>
                 <th>Extension</th>
+                <th>Image</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -19,7 +20,9 @@
                 <tr>
                     <td>{{$image->id}}</td>
                     <td>{{$image->extension}}</td>
+                    <td><img src="{{ url('uploads/' . $image->id . '.' . $image->extension) }}" width = '80px'></td>
                     <td>
+                        <a href="{{ route('admin.products_images.delete',['id' => $image->id]) }}" class="btn btn-primary">Delete</a>
                     </td>
                 </tr>
             @endforeach
