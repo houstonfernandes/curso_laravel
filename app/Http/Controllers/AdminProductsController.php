@@ -5,6 +5,7 @@ namespace CodeCommerce\Http\Controllers;
 use CodeCommerce\Product;
 use CodeCommerce\Category;
 use CodeCommerce\ProductImage;
+use CodeCommerce\Tag;
 use Illuminate\Http\Request;
 
 use CodeCommerce\Http\Requests;
@@ -44,13 +45,20 @@ class AdminProductsController extends Controller
     {
         $categories = $category->lists('name', 'id');
         $product = $this->products->find($id);
-        return view('admin.products.edit', compact('product', 'categories'));
+        $tags = $product->tags->lists('name')->toArray();
+        $tags = implode(",", $tags);
+        return view('admin.products.edit', compact('product', 'categories', 'tags'));
     }
 
     public function update(Requests\ProductRequest $request, $id)
     {
+        $input = $request->all();
+
         $product = $this->products->find($id);
-        $product->update($request->all());
+        $product->update($input);
+
+        $tagNames = explode(',', $input['tags']);
+        $tagIds = $this->storeTags($tagNames, $product->id);//armazena novas tags e mantem as atuais
 
         return redirect()->route('admin.products.index');
     }
@@ -75,8 +83,28 @@ class AdminProductsController extends Controller
 
         $product->save();//persiste no banco
 
+        $tagNames = explode(',', $input['tags']);
+        $tagIds = $this->storeTags($tagNames, $product->id);//armazena novas tags e mantem as atuais
+
         return redirect()->route('admin.products.index');
 
+    }
+
+    /**
+     * armazena tags e retorna array com as ids das tags
+     * @param array $tagNames
+     * @return array tagIds
+     */
+    private function storeTags(array $tagNames, $productId)
+    {
+        if(count($tagNames > 0)){
+            foreach($tagNames as $tagName){
+                $tag = Tag::firstOrCreate(array('name' => trim($tagName)));//cria se não existir
+                $tagIds[] = $tag->id ;
+            }
+            $product = $this->products->find($productId);
+            $product->tags()->sync($tagIds);//só mantén relacionadas as atuais
+        }
     }
 
     /**
@@ -101,7 +129,7 @@ class AdminProductsController extends Controller
     /**
      * salvar imagem de produto
      */
-    public function storeImage(Request $request, $id, ProductImage $productImage)
+    public function storeImage(Requests\ProductImageRequest $request, $id, ProductImage $productImage)
     {
         $file = $request->file('image');
        // var_dump($file); exit();
@@ -110,10 +138,8 @@ class AdminProductsController extends Controller
         //var_dump($image);exit();
         //gravar no disco config/filesystem.php
         Storage::disk('public_local')->put($image->id . '.' . $extension, File::get($file));
-        //Storage::disk('public_local')->put($image->id.'.'.$extension, File::get($file));
 
         return redirect()->route('admin.products_images.index', $id);
-
     }
 
     public function deleteImage(ProductImage $productImage, $id)

@@ -29,4 +29,11 @@ class Product extends Model
     public function images(){
         return $this->hasMany('CodeCommerce\ProductImage');
     }
+
+    /**
+     * busca as tags do produto n:m
+     */
+    public function tags(){
+        return $this->belongsToMany('CodeCommerce\Tag');
+    }
 }

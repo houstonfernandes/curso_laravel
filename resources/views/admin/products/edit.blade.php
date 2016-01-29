@@ -36,9 +36,12 @@
             {!! Form::label('recommend', "Recommend:") !!}
             {!! Form::hidden('recommend', 0) !!}<!--gambiarra-->
             {!! Form::checkbox('recommend', true, $product->recommend) !!}
-
         </div>
 
+        <div class ='form-group'>
+            {!! Form::label('tags', "Tags:") !!}
+            {!! Form::textarea('tags', $tags) !!}
+        </div>
 
         <div class ='form-group'>
             {!! Form::submit('Save', ['class' => "btn btn-primary"]) !!}

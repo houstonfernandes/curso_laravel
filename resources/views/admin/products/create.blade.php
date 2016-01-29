@@ -35,7 +35,11 @@
             {!! Form::label('recommend', "Recommend:") !!}
             {!! Form::hidden('recommend', 0) !!}<!--gambiarra-->
             {!! Form::checkbox('recommend', true,null) !!}
+        </div>
 
+        <div class ='form-group'>
+            {!! Form::label('tags', "Tags:") !!}
+            {!! Form::textarea('tags', null) !!}
         </div>
 
 
