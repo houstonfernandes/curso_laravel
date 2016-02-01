@@ -36,4 +36,11 @@ class Product extends Model
     public function tags(){
         return $this->belongsToMany('CodeCommerce\Tag');
     }
+
+    /** retorna produtos em destaque
+     */
+    public function scopeFeatured($query)
+    {
+        return $query->where('featured', '=', '1');
+    }
 }

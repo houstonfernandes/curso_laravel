@@ -48,10 +48,12 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.'],function(){
 
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'StoreController@index');
 
+/*Route::get('/', function () {
+  return view('welcome');
+});
+*/
 /*/meus testes
 Route::get('welcome', 'Welcome@index');
 Route::get('category', 'CategoryController@listar');
