@@ -37,10 +37,32 @@ class Product extends Model
         return $this->belongsToMany('CodeCommerce\Tag');
     }
 
-    /** retorna produtos em destaque
+    /** lista produtos em destaque
+     * @see Product::featured()->get
+     *
      */
     public function scopeFeatured($query)
     {
         return $query->where('featured', '=', '1');
+    }
+
+    /**
+     * lista produtos recomendados
+     * @param $query
+     * @return mixed
+     */
+    public function scopeRecommended($query)
+    {
+        return $query->where('recommend', '=', '1');
+    }
+
+    /**
+     * busca produtos por categorias
+     * @param $query
+     * @param $id id da category
+     * @return mixed - collection de produtos
+     */
+    public function scopeByCategory($query, $id){
+        return $query->where('category_id', '=', $id);
     }
 }
