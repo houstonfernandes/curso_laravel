@@ -17,7 +17,7 @@
                             @if(count($product->images))
                                 <img src="{{url('uploads/' .$product->images->first()->id . '.' . $product->images->first()->extension) }}" alt="" width="200" />
                             @else
-                                <img src="{{url('images/no-img.jpg')}}" alt="" width="200" />
+                                <img src="{{url('build/images/no-img.jpg')}}" alt="" width="200" />
                             @endif
                             <h2>R$ {{$product->price}} </h2>
                             <p> {{$product->name}} </p>
@@ -49,7 +49,7 @@
                             @if(count($product->images))
                                 <img src="{{url('uploads/' .$product->images->first()->id . '.' . $product->images->first()->extension) }}" alt="" width="200" />
                             @else
-                                <img src="{{url('images/no-img.jpg')}}" alt="" width="200" />
+                                <img src="{{url('build/images/no-img.jpg')}}" alt="" width="200" />
                             @endif
                             <h2>R$ {{$product->price}} </h2>
                             <p> {{$product->name}} </p>

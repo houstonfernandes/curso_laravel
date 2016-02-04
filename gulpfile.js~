@@ -40,5 +40,4 @@ elixir(function(mix) {
 	]);
 //copia de diretorios com arquivos
 	mix.copy('resources/assets/fonts', 'public/build/fonts');
-	mix.copy('resources/assets/images', 'public/build/images');
 });

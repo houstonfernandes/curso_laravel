@@ -9,7 +9,7 @@
     <title>Home | E-Shop</title>
 
 
-    <link href="{{elixir('css/all.css')}}" rel="stylesheet">
+    <link href="css/all.css" rel="stylesheet">
 
 </head><!--/head-->
 
