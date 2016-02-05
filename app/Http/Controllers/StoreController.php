@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Controllers\Controller;
 use CodeCommerce\Category;
+use CodeCommerce\Tag;
 
 class StoreController extends Controller
 {
@@ -27,8 +28,8 @@ class StoreController extends Controller
     {
         $categories = Category::all();
         $category = Category::find($id);
-        $productsCategory = Product::byCategory($id)->get();
-        return view('store.category', compact('categories', 'category', 'productsCategory'));
+        $products = Product::ofCategory($id)->get();
+        return view('store.category', compact('categories', 'category', 'products'));
     }
 
     /**
@@ -39,6 +40,22 @@ class StoreController extends Controller
     {
         $categories = Category::all();
         $product = Product::find($id);
-        return view('store.product', compact('categories','product'));
+        $tags = $product->tags;
+        return view('store.product', compact('categories','product','tags'));
     }
+
+    /**
+     * listar produtos por tags
+     * @param $id id da tag
+     */
+    public function tag($id)
+    {
+        $categories = Category::all();
+        $tag = Tag::find($id);
+        $products = $tag->products;
+        //var_dump($products);
+        //exit();
+        return view('store.tag', compact('categories', 'tag', 'products'));
+    }
+
 }

@@ -14,4 +14,10 @@ class Tag extends Model
     {
         return $this->belongsToMany('CodeCommerce\Product');
     }
+
+    public function scopeOfTag($query, $id){
+        return $query->where('id', '=', $id);
+    }
+
+
 }

@@ -62,7 +62,7 @@ class Product extends Model
      * @param $id id da category
      * @return mixed - collection de produtos
      */
-    public function scopeByCategory($query, $id){
+    public function scopeOfCategory($query, $id){
         return $query->where('category_id', '=', $id);
     }
 }
