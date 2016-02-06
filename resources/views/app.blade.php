@@ -2,8 +2,8 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<link href="{{ asset('css/all.css') }}" rel="stylesheet">
-    <script type="text/javascript" src="{{ asset('js/all.js') }}"></script>
+	<link href="{{ elixir('css/all.css') }}" rel="stylesheet">
+    <script type="text/javascript" src="{{ elixir('js/all.js') }}"></script>
 
     <title>Curso laravel - CodeCommerce</title>
 </head>
@@ -42,8 +42,10 @@
             </nav>
         </div>
     </div>
-
-	@yield('content')
+    <div class="container">
+        @include('partial.flash_message')
+	    @yield('content')
+    </div>
 <footer class="col-md-12">
     School of Net
 </footer>

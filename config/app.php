@@ -145,7 +145,7 @@ return [
         CodeCommerce\Providers\AuthServiceProvider::class,
         CodeCommerce\Providers\EventServiceProvider::class,
         CodeCommerce\Providers\RouteServiceProvider::class,
-
+        Laracasts\Flash\FlashServiceProvider::class,
     ],
 
     /*
@@ -196,7 +196,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         'Form'      => Illuminate\Html\FormFacade::class,
         'Html'      => Illuminate\Html\HtmlFacade::class,
-
+        'Flash'     => Laracasts\Flash\Flash::class,
     ],
 
 ];

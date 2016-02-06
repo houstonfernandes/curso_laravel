@@ -1,34 +1,31 @@
 @extends('app')
 
 @section('content')
-    <div class="container">
-        <h1>Users</h1>
+    <h1>Users</h1>
 
-        <a class='btn btn-primary' href="{{ route('admin.products.create') }}">Create</a>
+    <a class='btn btn-primary' href="{{ route('admin.products.create') }}">Create</a>
 
-        <table class="table">
-            <thead>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($users as $user)
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Password</th>
+                <td>{{$user->id}}</td>
+                <td>{{$user->name}}</td>
+                <td>{{$user->email}}</td>
+                <td>{{$user->password}}</td>
             </tr>
-            </thead>
-            <tbody>
-            @foreach($users as $user)
-                <tr>
-                    <td>{{$user->id}}</td>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->password}}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-        <div id="pages">
-            {!! $users->render() !!}
-        </div>
-
+        @endforeach
+        </tbody>
+    </table>
+    <div id="pages">
+        {!! $users->render() !!}
     </div>
 @endsection
