@@ -49,6 +49,8 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.'],function(){
 });
 Route::group(['prefix' => '/', 'as' => 'store.'], function()
 {
+    Route::pattern('qtd','[0-9]+');
+
     Route::get('/', ['as' =>'index', 'uses' => 'StoreController@index']);
     Route::get('category/{id}',['as' => 'category', 'uses' => 'StoreController@category']);
     Route::get('product/{id}',['as' => 'product', 'uses' => 'StoreController@product']);
@@ -56,6 +58,7 @@ Route::group(['prefix' => '/', 'as' => 'store.'], function()
     Route::get('cart',['as' => 'cart', 'uses' => 'CartController@index']);
     Route::get('cart/add/{id}',['as' => 'cart.add', 'uses' => 'CartController@add']);
     Route::get('cart/delete/{id}',['as' => 'cart.delete', 'uses' => 'CartController@delete']);
+    Route::get('cart/edit/{id}/{qtd}',['as' => 'cart.edit', 'uses' => 'CartController@edit']);
 });
 
 /*Route::get('/', function () {

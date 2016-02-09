@@ -31,6 +31,7 @@ class Cart
     {
         return $this->items;
     }
+
     public function getTotal()
     {
         $total = 0;
@@ -38,5 +39,13 @@ class Cart
             $total += $item['qtd'] * $item['price'];
         }
         return $total;
+    }
+
+    public function edit($id, $qtd)
+    {
+        if($qtd == 0)
+            $this->delete($id);
+        else
+            $this->items[$id]['qtd'] = $qtd;
     }
 }
