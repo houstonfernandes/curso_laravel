@@ -17,7 +17,7 @@
                 <tbody>
                     @forelse($cart->all() as $k=>$item)
                     <tr>
-                        <td class="product">
+                        <td class="cart_product">
                             <a href = "{{ route('store.product', $k) }}">
                                 <img src="{{$item['imgPath']}}" width='50px'>
                             </a>
@@ -25,21 +25,20 @@
                         <td class="cart_description"> <h4>{{$item['name']}} </h4>
                             <p> Código: {{$k}}</p>
                         </td>
-                        <td class="'cart_price">
-                            R$ {{number_format($item['price'], 2)}}
+                        <td class="cart_price">
+                            R$ {{number_format($item['price'], 2,',','.')}}
                         </td>
-                        <td class="quantity">
+                        <td class="cart_quantity">
                             {{$item['qtd']}}
                         </td>
                         <td class="cart_total">
-                            <p class="cart_total_price"> R$ {{number_format($item['price'] * $item['qtd'], 2)  }}</p>
+                            <p class="cart_total_price"> R$ {{number_format($item['price'] * $item['qtd'], 2,',','.')  }}</p>
                         </td>
-                        <td class="cart_edit">
-                            <button type="button" data-target="#form_edit" class="btn"  data-toggle="modal" data-item_id="{{$k}}" data-item_name="{{$item['name']}}" data-item_price="{{$item['price']}}" data-item_qtd="{{$item['qtd']}}">Edit</button>
-                        </td>
-
                         <td class="cart_delete">
-                            <a href="{{route('store.cart.delete', ['id'=> $k])}}" class="btn">Delete</a>
+
+                            <a href ="#form_edit" class="btn cart_quantity_button"  data-toggle="modal" data-item_id="{{$k}}" data-item_name="{{$item['name']}}" data-item_price="{{$item['price']}}" data-item_qtd="{{$item['qtd']}}">Editar</a>
+                            <a href="{{route('store.cart.delete', ['id'=> $k])}}" class="btn cart_quatity_delete">Excluir</a>
+
                         </td>
 
                     </tr>
@@ -51,8 +50,15 @@
                         </tr>
                     @endforelse
 
-                    <tr>
-                        <td colspan='6' style='text-align:right;margin-right:20px;'> Total: R$ {{$cart->getTotal()}}</td>
+                    <tr class="cart_menu">
+                        <td colspan='6'>
+                            <div class="pull-right">
+                                <span style="margin-right: 30px;">
+                                    TOTAL: R$ {{$cart->getTotal()}}
+                                </span>
+                                <a href="#" class="btn btn-success">Fechar a conta</a>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -84,13 +90,12 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
                         <button type="button" class="btn btn-primary" id="btConfirm" url="{{route('store.cart.edit',['id'=>-1,'qtd'=>-2])}}">Confirmar</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-
     </section>
 
 @stop
