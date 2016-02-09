@@ -64,6 +64,7 @@
             </table>
         </div>
 
+
         <div id='form_edit' class="modal fade" tabindex="-1" role="dialog">
             <input type="hidden" id="id_product">
             <div class="modal-dialog">
@@ -96,6 +97,7 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+
     </section>
 
 @stop

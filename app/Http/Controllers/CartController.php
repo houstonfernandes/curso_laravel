@@ -26,12 +26,11 @@ class CartController extends Controller
     public function add($id){
         $cart = $this->getCart();
         $product = Product::find($id);
-        $img = $product->images->first();
+        $img = $product->firstImageName();
         if($img)//caminho da imagem
-            $imgPath = url('uploads/' .$img->id . '.' . $img->extension);
+            $imgPath = url('uploads/' . $img);
         else
-            $imgPath = url('images/no-img.jpg');
-
+            $imgPath = url('build/images/no-img.jpg');
 
         $cart->add($product->id, $product->name, $product->price, $imgPath);
         Session::set('cart', $cart);
