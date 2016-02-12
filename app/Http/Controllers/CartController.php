@@ -44,9 +44,9 @@ class CartController extends Controller
         return redirect()->route('store.cart');
     }
 
-    public function edit($id, $qtd){
+    public function update($id, Requests\CartRequest $request){
         $cart = $this->getCart();
-        $cart->edit($id,$qtd);
+        $cart->edit($id, $request['qtd']);
         Session::set('cart', $cart);
         return redirect()->route('store.cart');
     }

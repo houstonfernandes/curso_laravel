@@ -58,7 +58,7 @@ Route::group(['prefix' => '/', 'as' => 'store.'], function()
     Route::get('cart',['as' => 'cart', 'uses' => 'CartController@index']);
     Route::get('cart/add/{id}',['as' => 'cart.add', 'uses' => 'CartController@add']);
     Route::get('cart/delete/{id}',['as' => 'cart.delete', 'uses' => 'CartController@delete']);
-    Route::get('cart/edit/{id}/{qtd}',['as' => 'cart.edit', 'uses' => 'CartController@edit']);
+    Route::put('cart/update/{id}',['as' => 'cart.update', 'uses' => 'CartController@update']);
 });
 
 /*Route::get('/', function () {
