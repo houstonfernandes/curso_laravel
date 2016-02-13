@@ -36,4 +36,12 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * lista pedidos do user
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders(){
+        return $this->hasMany('CodeCommerce\Order');
+    }
 }

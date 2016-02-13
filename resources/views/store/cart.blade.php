@@ -49,11 +49,9 @@
                         <td class="cart_total">
                             <p class="cart_total_price"> R$ {{number_format($item['price'] * $item['qtd'], 2,',','.')  }}</p>
                         </td>
+
                         <td class="cart_delete">
-
-                            <a href ="#form_edit" class="btn cart_quantity_button"  data-toggle="modal" data-item_id="{{$k}}" data-item_name="{{$item['name']}}" data-item_price="{{$item['price']}}" data-item_qtd="{{$item['qtd']}}">Editar</a>
                             <a href="{{route('store.cart.delete', ['id'=> $k])}}" class="btn cart_quatity_delete">Excluir</a>
-
                         </td>
 
                     </tr>

@@ -63,5 +63,9 @@ class CartController extends Controller
             $cart = $this->cart;
         return $cart;
     }
+    public function cleanCart(){
+        Session::set('cart', $this->cart);
+        return redirect()->route('store.cart');
+    }
 
 }
