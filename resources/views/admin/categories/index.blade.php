@@ -1,4 +1,5 @@
-@extends('app')
+@extends('admin.template')
+
 @section('content')
     <h1>Categories</h1>
 

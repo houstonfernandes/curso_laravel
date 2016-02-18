@@ -1,4 +1,4 @@
-@extends('app')
+@extends('admin.template')
 
 @section('content')
     <h1>Edit Category - {{$category->name}}</h1>

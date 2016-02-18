@@ -54,7 +54,17 @@
                                 <li><a href="#"><i class="fa fa-user"></i> Minha conta</a></li>
                                 <li><a href="http://commerce.dev:10088/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                                 <li><a href="{{route('store.cart')}}"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
-                                <li><a href="http://commerce.dev:10088/auth/login"><i class="fa fa-lock"></i> Login</a></li>
+
+                                @if(auth()->check())
+                                    <li class="dropdown"><a href="#"><i class="glyphicon glyphicon-user"></i> {{auth()->user()->name}}</a>
+                                        <ul role="menu">
+                                            <li><a href="{{route('auth.logout')}}">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                @else
+                                    <li class="dropdown"><a href="{{route('auth.login')}}"><i class="fa fa-lock"></i> Login</a></li>
+                                @endif
+
                             </ul>
                         </div>
                     </div>
@@ -75,6 +85,7 @@
                             </button>
                         </div>
                         <div class="mainmenu pull-left">
+                            @yield('menu_admin')
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="/" class="active">Home</a></li>
                                 <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
@@ -86,6 +97,7 @@
                                         <li><a href="login.html">Login</a></li>
                                     </ul>
                                 </li>
+
 
                                 <li><a href="contact-us.html">Contact</a></li>
                             </ul>

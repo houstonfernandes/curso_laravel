@@ -22,7 +22,7 @@ class AdminUsersController extends Controller
         $users = $this->users->paginate(3);//paginaçao
         return view('admin.users.index', compact('users'));
     }
-/*
+
     public function create()
     {
         return view('admin.users.create');

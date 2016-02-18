@@ -11,7 +11,7 @@
 |
 */
 Route::pattern('id','[0-9]+');
-Route::group(['prefix'=>'admin', 'as' => 'admin.'],function(){
+Route::group(['prefix'=>'admin', 'middleware'=>'auth', 'as' => 'admin.'],function(){
 
     Route::group(['prefix'=>'products', 'as' => 'products.'], function(){
         get('/', ['as' => 'index', 'uses' => 'AdminProductsController@index']);
@@ -50,7 +50,7 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.'],function(){
 Route::group(['prefix' => '/', 'as' => 'store.'], function()
 {
     Route::pattern('qtd','[0-9]+');
-
+    Route::get('home', ['as' =>'index', 'uses' => 'StoreController@index']);
     Route::get('/', ['as' =>'index', 'uses' => 'StoreController@index']);
     Route::get('category/{id}',['as' => 'category', 'uses' => 'StoreController@category']);
     Route::get('product/{id}',['as' => 'product', 'uses' => 'StoreController@product']);
@@ -62,6 +62,16 @@ Route::group(['prefix' => '/', 'as' => 'store.'], function()
     Route::get('cart/clean',['as' => 'cart.clean', 'uses' => 'CartController@cleanCart']);
     Route::get('checkout/place_order',['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
 });
+
+Route::controllers([
+    'password' => 'Auth\PasswordController',
+    'test' =>"TestController"
+]);
+
+Route::controller('auth', 'Auth\AuthController', [
+    'getLogin' => 'auth.login',             //nome das rotas
+    'getLogout' => 'auth.logout'
+]);
 
 /*Route::get('/', function () {
   return view('welcome');
