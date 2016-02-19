@@ -2,6 +2,7 @@
 
 namespace CodeCommerce\Http\Controllers;
 
+use CodeCommerce\Category;
 use Illuminate\Http\Request;
 
 use CodeCommerce\Http\Requests;
@@ -39,8 +40,12 @@ class CheckoutController extends Controller
                 ]);
             }
 
-            return view('store.order',compact('order'));
+            $cart->clear();
+            $cart ='';
+            return view('store.order',compact('order','cart'));
         }
 
+        $categories = Category::all();
+        return view('store.order',['cart'=>'empty', 'categories' => $categories]);
     }
 }

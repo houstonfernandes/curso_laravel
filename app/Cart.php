@@ -48,4 +48,9 @@ class Cart
         else
             $this->items[$id]['qtd'] = $qtd;
     }
+
+    public function clear()
+    {
+        $this->items = [];
+    }
 }

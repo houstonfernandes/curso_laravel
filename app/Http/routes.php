@@ -11,7 +11,7 @@
 |
 */
 Route::pattern('id','[0-9]+');
-Route::group(['prefix'=>'admin', 'middleware'=>'auth', 'as' => 'admin.'],function(){
+Route::group(['prefix'=>'admin', 'middleware'=>'auth.admin', 'as' => 'admin.'],function(){
 
     Route::group(['prefix'=>'products', 'as' => 'products.'], function(){
         get('/', ['as' => 'index', 'uses' => 'AdminProductsController@index']);
