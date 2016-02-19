@@ -41,7 +41,7 @@ class AuthenticateAdmin
                 return redirect()->guest('auth/login');
             }
         }
-
+        
         if(!$this->auth->user()->is_admin){
             return redirect()->guest('auth/login');//redireciona, colocando a url corrente na sessão como intented
         }

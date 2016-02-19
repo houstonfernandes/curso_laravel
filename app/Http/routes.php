@@ -47,6 +47,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth.admin', 'as' => 'admin.'],f
     });
 
 });
+
 Route::group(['prefix' => '/', 'as' => 'store.'], function()
 {
     Route::pattern('qtd','[0-9]+');
@@ -60,9 +61,18 @@ Route::group(['prefix' => '/', 'as' => 'store.'], function()
     Route::get('cart/delete/{id}',['as' => 'cart.delete', 'uses' => 'CartController@delete']);
     Route::put('cart/update/{id}',['as' => 'cart.update', 'uses' => 'CartController@update']);
     Route::get('cart/clean',['as' => 'cart.clean', 'uses' => 'CartController@cleanCart']);
-    Route::get('checkout/place_order',['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
+
+    //rotas com autenticacao
+    Route::group(['middleware' => 'auth'], function()
+    {
+        Route::get('checkout/place_order',['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
+        Route::get('account/orders',['as' => 'account.orders', 'uses' => 'AccountController@orders']);
+    });
+
 });
 
+
+//rotas de controllers - precisa especificar get ou post no prefixo do metodo dentro da classe
 Route::controllers([
     'password' => 'Auth\PasswordController',
     'test' =>"TestController"

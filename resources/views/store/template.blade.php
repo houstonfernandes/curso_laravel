@@ -51,13 +51,16 @@
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-user"></i> Minha conta</a></li>
+                                <li><a href="{{route('store.account.orders')}}"><i class="fa fa-user"></i> Minha conta</a></li>
                                 <li><a href="http://commerce.dev:10088/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                                 <li><a href="{{route('store.cart')}}"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
 
                                 @if(auth()->check())
-                                    <li class="dropdown"><a href="#"><i class="glyphicon glyphicon-user"></i> {{auth()->user()->name}}</a>
-                                        <ul role="menu">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <i class="glyphicon glyphicon-user"></i> {{auth()->user()->name}}
+                                        </a>
+                                        <ul class='dropdown-menu' role="menu">
                                             <li><a href="{{route('auth.logout')}}">Logout</a></li>
                                         </ul>
                                     </li>
@@ -85,9 +88,15 @@
                             </button>
                         </div>
                         <div class="mainmenu pull-left">
-                            @yield('menu_admin')
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="/" class="active">Home</a></li>
+
+                                @if(auth()->check())
+                                    @if(auth()->user()->is_admin))
+                                        @include('admin.partial.menu_admin')
+                                    @endif
+                                @endif
+
                                 <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Products</a></li>
