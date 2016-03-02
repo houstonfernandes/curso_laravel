@@ -83,6 +83,10 @@ Route::controller('auth', 'Auth\AuthController', [
     'getLogout' => 'auth.logout'
 ]);
 
+Route::get('event', function(){ //teste chamar evento
+    Illuminate\Support\Facades\Event::fire( new CodeCommerce\Events\CheckoutEvent());
+});
+
 /*Route::get('/', function () {
   return view('welcome');
 });

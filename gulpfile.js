@@ -26,6 +26,7 @@ elixir(function(mix) {
 //tarefas js
     mix.scripts([
 	'jquery.min.js',
+//    'jquery-1.9.1.min.js',
 	'bootstrap.min.js',
 	'jquery.scrollUp.min.js',
 	'price-range.js',

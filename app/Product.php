@@ -43,7 +43,7 @@ class Product extends Model
      */
     public function scopeFeatured($query)
     {
-        return $query->where('featured', '=', '1');
+        return $query->where('featured', '=', '1')->limit(6);
     }
 
     /**
@@ -53,7 +53,8 @@ class Product extends Model
      */
     public function scopeRecommended($query)
     {
-        return $query->where('recommend', '=', '1');
+        return $query->where('recommend', '=', '1')
+            ->limit(12);
     }
 
     /**

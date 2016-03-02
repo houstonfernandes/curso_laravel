@@ -8,7 +8,7 @@
                     @else
                         <img src="{{url('build/images/no-img.jpg')}}" alt="" width="200" />
                     @endif
-                    <h2>R$ {{$product->price}} </h2>
+                    <h2>R$ {{number_format($product->price, 2, ',', '.')}} </h2>
                     <p> {{$product->name}} </p>
 
                     <a href="{{route('store.product', $product->id)}}" class="btn btn-default add-to-cart"><i class="fa fa-crosshairs"></i>Mais detalhes</a>
@@ -17,7 +17,7 @@
                 </div>
                 <div class="product-overlay">
                     <div class="overlay-content">
-                        <h2>R$ {{$product->price}} </h2>
+                        <h2>R$ {{number_format($product->price, 2, ',', '.')}} </h2>
                         <p> {{$product->name}} </p>
 
                         <a href="{{route('store.product', $product->id)}}" class="btn btn-default add-to-cart"><i class="fa fa-crosshairs"></i>Mais detalhes</a>

@@ -57,6 +57,12 @@
     </div>
 @stop
 
+
+@section('css')
+
+@stop
+
+
 @section('js')
     <script type="application/javascript">
         $('.imgLink').on('click', function(){
@@ -65,4 +71,5 @@
         });
     </script>
 @stop
+
 

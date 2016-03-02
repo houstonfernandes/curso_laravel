@@ -11,6 +11,8 @@
 
     <link href="{{elixir('css/all.css')}}" rel="stylesheet">
 
+    @yield('css')
+
 </head><!--/head-->
 
 <body>
@@ -108,7 +110,7 @@
                                 </li>
 
 
-                                <li><a href="contact-us.html">Contact</a></li>
+                                <li><a href="contact-us.html">Contato</a></li>
                             </ul>
                         </div>
                     </div>
@@ -124,7 +126,7 @@
 
 
 
-    <section id="conteudo" >
+    <section>
         <div class="container">
             <div class="row">
 
@@ -161,9 +163,11 @@
     </footer><!--/Footer-->
 
 
-
     <script src="{{elixir('js/all.js')}}"></script>
 
+
     @yield('js')
+
+
 </body>
 </html>
