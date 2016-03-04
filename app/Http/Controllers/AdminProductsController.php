@@ -60,7 +60,7 @@ class AdminProductsController extends Controller
         $tagNames = explode(',', $input['tags']);
         $tagIds = $this->storeTags($tagNames, $product->id);//armazena novas tags e mantem as atuais
 
-        flash()->success('Successfully - Product updated - '.$product->name);//flash message teste
+        flash()->success('Produto atualizado com sucesso. - '.$product->name);//flash message teste
         return redirect()->route('admin.products.index');
     }
 
@@ -68,6 +68,8 @@ class AdminProductsController extends Controller
     {
         $product = $this->products->find($id);
         $product->delete();
+
+        flash('Produto excluído com sucesso. - ' . $product->name);//flash message teste
 
         return redirect()->route('admin.products.index');
     }
@@ -87,7 +89,7 @@ class AdminProductsController extends Controller
         $tagNames = explode(',', $input['tags']);
         $tagIds = $this->storeTags($tagNames, $product->id);//armazena novas tags e mantem as atuais
 
-        flash('Successfully - Product saved');//flash message teste
+        flash('Produto salvo com sucesso. - ' . $product->name);//flash message teste
 
         return redirect()->route('admin.products.index');
 

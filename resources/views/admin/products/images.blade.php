@@ -1,7 +1,7 @@
 @extends('admin.template')
 
 @section('content')
-    <h1>Product Images - {{$product->name}}</h1>
+    <h1>Imagens de produto - {{$product->name}}</h1>
 
     <a class='btn btn-primary' href="{{ route('admin.products_images.create', $product->id) }}">Create Image</a>
 
@@ -15,7 +15,7 @@
     </tr>
     </thead>
     <tbody>
-    @foreach($product->images as $image)
+    @forelse($product->images as $image)
         <tr>
             <td>{{$image->id}}</td>
             <td>{{$image->extension}}</td>
@@ -24,7 +24,12 @@
                 <a href="{{ route('admin.products_images.delete',['id' => $image->id]) }}" class="btn btn-primary">Delete</a>
             </td>
         </tr>
-    @endforeach
+    @empty
+        <tr>
+            <td colspan="4">Nenhuma imagem encontrada.</td>
+        </tr>
+
+    @endforelse
     </tbody>
     </table>
     <div id="pages">

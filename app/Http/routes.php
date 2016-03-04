@@ -46,6 +46,12 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth.admin', 'as' => 'admin.'],f
         get('/', ['as' => 'index', 'uses' => 'AdminUsersController@index']);
     });
 
+    Route::group(['prefix'=>'orders', 'as' => 'orders.'], function(){
+        get('/', ['as' => 'index', 'uses' => 'AdminOrdersController@index']);
+        get('view/{id}', ['as' => 'view', 'uses' => 'AdminOrdersController@view']);
+        put('update_status/{id}', ['as' => 'update_status', 'uses' => 'AdminOrdersController@updateStatus']);
+    });
+
 });
 
 Route::group(['prefix' => '/', 'as' => 'store.'], function()

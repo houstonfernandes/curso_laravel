@@ -14,7 +14,12 @@
     @yield('css')
 
 </head><!--/head-->
+<style>
+    .tela{
+        min-height: 70vh;
+    }
 
+</style>
 <body>
     <header id="header"><!--header-->
         <div class="header_top"><!--header_top-->
@@ -127,8 +132,10 @@
 
 
     <section>
-        <div class="container">
+        <div class="container tela">
             <div class="row">
+
+                @include('partial.flash_message')
 
                 @yield('categories')
 

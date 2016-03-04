@@ -1,7 +1,7 @@
 @extends('admin.template')
 
 @section('content')
-    <h1>Edit Category - {{$category->name}}</h1>
+    <h1>Editar Categoria - {{$category->name}}</h1>
     @if ($errors->any())
         <ul class="alert">
             @foreach ( $errors->all() as $error)

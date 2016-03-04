@@ -12,7 +12,13 @@ class UserTableSeeder extends Seeder
                 'name' => "Houston",
                 'email' => 'houstonfernandes@gmail.com',
                 'password' => Hash::make('123456'),
-                'is_admin'=> true
+                'is_admin'=> true,
+                'endereco' =>'R. Canadá',
+                'numero' => 73,
+                'bairro' => 'Jardim Naltilus',
+                'cidade' => 'Cabo Frio',
+                'uf' => 'RJ',
+                'cep'=>'28909-170',
             ]
         );//usuario  padrao
 

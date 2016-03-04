@@ -54,6 +54,8 @@ class AdminCategoriesController extends Controller
         $category = $this->categories->find($id);
         $category->update($request->all());
 
+        flash()->success('Categoria atualizada com sucesso. - ' . $category->name);//flash message teste
+
         return redirect()->route('admin.categories.index');
     }
     /**
@@ -64,6 +66,8 @@ class AdminCategoriesController extends Controller
         $input = $request->all();
         $category = $this->categories->fill($input);//dados do request passados para o model
         $category->save();//persiste no banco
+
+        flash('Categoria criada com sucesso. -' . $category->name);//flash message teste
 
         return redirect()->route('admin.categories.index');
     }

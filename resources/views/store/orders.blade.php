@@ -3,16 +3,17 @@
 @section('content')
 
     <h3>Pedidos</h3>
-    @foreach($orders as $order)
+    @forelse($orders as $order)
         <div class="destaque">
-            <p>Número: {{$order->id}} </p>
-            <p>Status: {{$order->statusName()}}</p>
-            <h4>Itens</h4>
-
             <section id="'order_items">
                 <div class="table-responsive cart-info">
-                    <table class="table table-condensed table-hover">
+                    <table class="table table-condensed table-hover table-border">
                         <thead>
+                            <tr class="order-title">
+                                <td>Número: {{$order->id}} </td>
+                                <td>Data da compra: {{ date("d/m/Y h:i:s", strtotime($order->created_at)) }}</td>
+                                <td colspan="2">Status: {{ $order->statusName() }}</td>
+                            </tr>
                             <tr class="cart-menu">
                                 <td class="name">Nome</td>
                                 <td class="price">Preço</td>
@@ -54,7 +55,12 @@
 
             </section>
         </div>
-    @endforeach
+        @empty
+        <p>
+            Nenhum pedido encontrado.
+        </p>
+
+    @endforelse
 @stop
 
 @section('css')
@@ -63,9 +69,16 @@
             background-color: #F2F2F2;
             border: 1px dashed #dff0d8;
         }
-        .cart-menu{
-            background-color: #000088;
+        .order-title{
+            background-color: #3C6C96;
             color:white;
+        }
+        .cart-menu{
+            background-color: #99bad6;
+            /*color:white;*/
+        }
+        .table-border{
+            border: 1px dashed #3C6C96;
         }
     </style>
 @stop

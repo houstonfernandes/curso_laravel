@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Create Product</h1>
+    <h1>Criar Produto</h1>
     @if ($errors->any())
         <ul class="alert">
             @foreach ( $errors->all() as $error)

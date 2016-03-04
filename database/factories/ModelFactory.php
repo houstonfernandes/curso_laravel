@@ -17,6 +17,12 @@ $factory->define(CodeCommerce\User::class, function (Faker\Generator $faker) {
         'email' => $faker->email,
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
+        'endereco' => $faker->streetAddress,
+        'numero'=> $faker->randomNumber(2),
+        'bairro'=> $faker->name,
+        'cidade'=> $faker->city,
+        'uf' => $faker->countryISOAlpha3,
+        'cep' => $faker->numerify('#####-###'),
     ];
 });
 

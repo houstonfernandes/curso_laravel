@@ -9,7 +9,7 @@ class Order extends Model
 {
     protected $fillable = ['user_id', 'total', 'status'];
 
-    private $statusName = [
+    public static $statusNames = [
         0 => 'Aguardando pagamento',
         1 => 'Pagamento realizado',
         2 => 'Aguardando envio',
@@ -35,15 +35,16 @@ class Order extends Model
      */
     public function statusName()
     {
-        return $this->statusName[$this->status];
+        return self::$statusNames[$this->status];
     }
 
     /**
-     * obtem array de nomes de status
-     * @return array
+     * verifica se status é válido
+     * @param $status
+     * @return bool
      */
-    public function getStatusName()
-    {
-        return $this->statusName;
+    public static function validStatus($status){
+        return array_key_exists($status,self::$statusNames);
     }
+
 }
