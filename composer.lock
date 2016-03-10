@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6afdc974f8369f337062cd00538d96d4",
-    "content-hash": "885aca35c7acbfb9a878666fa0db331d",
+    "hash": "b630c990eadeaa98f308e8cf58b61ff5",
+    "content-hash": "536775a6046f2f657908b31089f94864",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1153,6 +1153,49 @@
             "time": "2016-02-06 03:52:05"
         },
         {
+            "name": "phpsc/pagseguro",
+            "version": "1.0.0alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPSC/pagseguro.git",
+                "reference": "cfb34382fb343285f1b691a7368304247beca9de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPSC/pagseguro/zipball/cfb34382fb343285f1b691a7368304247beca9de",
+                "reference": "cfb34382fb343285f1b691a7368304247beca9de",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPSC\\PagSeguro": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "CC-BY-SA-2.5"
+            ],
+            "authors": [
+                {
+                    "name": "Luís Otávio Cobucci Oblonczyk",
+                    "email": "lcobucci@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Client para integração com API do Pagseguro",
+            "keywords": [
+                "Notificacao",
+                "Pagamento",
+                "Pagseguro",
+                "api"
+            ],
+            "time": "2013-04-22 13:40:32"
+        },
+        {
             "name": "psr/http-message",
             "version": "1.0",
             "source": {
@@ -2231,6 +2274,42 @@
                 "environment"
             ],
             "time": "2015-05-30 15:59:26"
+        },
+        {
+            "name": "wesleywillians/laravel-pagseguro",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wesleywillians/laravel-pagseguro.git",
+                "reference": "79731459e9f52396a4357608237ed89e149195b3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wesleywillians/laravel-pagseguro/zipball/79731459e9f52396a4357608237ed89e149195b3",
+                "reference": "79731459e9f52396a4357608237ed89e149195b3",
+                "shasum": ""
+            },
+            "require": {
+                "phpsc/pagseguro": "1.0.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LaravelPagseguro\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Wesley Willians",
+                    "email": "wesleywillians@gmail.com"
+                }
+            ],
+            "description": "Laravel 5 ServiceProvider for Pagseguro Library from PHPSC",
+            "time": "2015-06-11 22:33:58"
         }
     ],
     "packages-dev": [
@@ -3411,8 +3490,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "wesleywillians/laravel-pagseguro": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
