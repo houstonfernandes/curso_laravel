@@ -9,7 +9,7 @@
 				<div class="panel-body">
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
-							<strong>Whoops!</strong> Houve algum problema nos dados de entrada.<br><br>
+							<strong>Ops!</strong> Houve algum problema nos dados de entrada.<br><br>
 							<ul>
 								@foreach ($errors->all() as $error)
 									<li>{{ $error }}</li>
@@ -22,14 +22,14 @@
 						{!! csrf_field() !!}
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">E-Mail Address</label>
+							<label class="col-md-4 control-label">E-Mail</label>
 							<div class="col-md-6">
 								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label">Password</label>
+							<label class="col-md-4 control-label">Senha</label>
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="password">
 							</div>
@@ -42,12 +42,16 @@
 										<input type="checkbox" name="remember"> Lembrar de mim
 									</label>
 								</div>
+								<div>
+									<button type="submit" class="btn btn-primary">Login</button>
+								</div>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">Login</button>
+
+								<br>
 								<a class="btn btn-link" href="{{ url('/password/email') }}">Esqueceu sua senha?</a>
 								<a class="btn btn-link" href="{{ url('/auth/register') }}">Registrar-se</a>
 							</div>

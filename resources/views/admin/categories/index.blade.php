@@ -3,15 +3,15 @@
 @section('content')
     <h1>Categorias</h1>
 
-    <a class='btn btn-primary' href="{{ route('admin.categories.create') }}">Create</a>
+    <a class='btn btn-primary' href="{{ route('admin.categories.create') }}">Nova</a>
 
     <table class="table">
         <thead>
         <tr>
             <th>Id</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Action</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Ação</th>
         </tr>
         </thead>
         <tbody>
@@ -21,8 +21,8 @@
             <td>{{$category->name}}</td>
             <td>{{$category->description}}</td>
             <td>
-                <a class='btn btn-primary' href="{{route('admin.categories.edit',['id' => $category->id])}}"> edit</a>
-                <a class='btn btn-primary' href="{{route('admin.categories.delete',['id' => $category->id])}}"> delete</a>
+                <a class='btn btn-primary' href="{{route('admin.categories.edit',['id' => $category->id])}}"> Editar</a>
+                <a class='btn btn-primary' href="{{route('admin.categories.delete',['id' => $category->id])}}"> Deletar</a>
             </td>
         </tr>
     @endforeach

@@ -3,17 +3,17 @@
 @section('content')
     <h1>Produtos</h1>
 
-    <a class='btn btn-primary' href="{{ route('admin.products.create') }}">Create</a>
+    <a class='btn btn-primary' href="{{ route('admin.products.create') }}">Novo</a>
 
     <table class="table">
         <thead>
         <tr>
             <th>Id</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Category</th>
-            <th>Action</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Categoria</th>
+            <th>Ação</th>
         </tr>
         </thead>
         <tbody>
@@ -25,9 +25,9 @@
                 <td>{{$product->price}}</td>
                 <td>{{$product->category->name}}</td>
                 <td>
-                    <a class='btn btn-primary' href="{{route('admin.products.edit',['id' => $product->id])}}"> edit</a>
-                    <a class='btn btn-primary' href="{{route('admin.products_images.index',['id' => $product->id])}}"> images</a>
-                    <a class='btn btn-primary' href="{{route('admin.products.delete',['id' => $product->id])}}"> delete</a>
+                    <a class='btn btn-primary' href="{{route('admin.products.edit',['id' => $product->id])}}"> editar</a>
+                    <a class='btn btn-primary' href="{{route('admin.products_images.index',['id' => $product->id])}}"> imagens</a>
+                    <a class='btn btn-primary' href="{{route('admin.products.delete',['id' => $product->id])}}"> deletar</a>
                 </td>
             </tr>
         @endforeach

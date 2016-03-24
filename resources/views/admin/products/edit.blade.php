@@ -12,27 +12,27 @@
     {!! Form::open(['route'=> ['admin.products.update', $product->id], 'method' => 'put']) !!}
 
     <div class ='form-group'>
-        {!! Form::label('name', "Category:") !!}
+        {!! Form::label('name', "Categoria:") !!}
         {!! Form::select('category_id', $categories, $product->category->id, ['class' => 'form-control']) !!}
     </div>
     <div class ='form-group'>
-        {!! Form::label('name', "Name:") !!}
+        {!! Form::label('name', "Nome:") !!}
         {!! Form::text('name', $product->name, ['class' => 'form-control']) !!}
     </div>
 
     <div class ='form-group'>
-        {!! Form::label('description', "Description:") !!}
+        {!! Form::label('description', "Descrição:") !!}
         {!! Form::textarea('description', $product->description, ['class' => 'form-control']) !!}
     </div>
 
     <div class ='form-group'>
-        {!! Form::label('price', "Price:") !!}
+        {!! Form::label('price', "Preço:") !!}
         {!! Form::text('price', $product->price) !!}
 
-        {!! Form::label('featured', "Featured:") !!}
+        {!! Form::label('featured', "Destaque:") !!}
         {!! Form::hidden('featured', 0) !!}<!--gambiarra-->
         {!! Form::checkbox('featured', true, $product->featured) !!}
-        {!! Form::label('recommend', "Recommend:") !!}
+        {!! Form::label('recommend', "Recomendado:") !!}
         {!! Form::hidden('recommend', 0) !!}<!--gambiarra-->
         {!! Form::checkbox('recommend', true, $product->recommend) !!}
     </div>
@@ -43,8 +43,8 @@
     </div>
 
     <div class ='form-group'>
-        {!! Form::submit('Save', ['class' => "btn btn-primary"]) !!}
-        <a class="btn btn-primary" href="{{route('admin.products.index')}}">Cancel</a>
+        {!! Form::submit('Confirmar', ['class' => "btn btn-primary"]) !!}
+        <a class="btn btn-primary" href="{{route('admin.products.index')}}">Cancelar</a>
     </div>
 
     {!! Form::close() !!}

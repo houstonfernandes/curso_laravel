@@ -1,7 +1,7 @@
 @extends('admin.template')
 
 @section('content')
-    <h1>Criar Categoria</h1>
+    <h1>Nova Categoria</h1>
     @if ($errors->any())
         <ul class="alert">
             @foreach ( $errors->all() as $error)
@@ -12,18 +12,18 @@
     {!! Form::open(['route'=> 'admin.categories.store']) !!}
 
     <div class ='form-group'>
-        {!! Form::label('name', "Name:") !!}
+        {!! Form::label('name', "Nome:") !!}
         {!! Form::text('name', null, ['class' => 'form-control']) !!}
     </div>
 
     <div class ='form-group'>
-        {!! Form::label('description', "Description:") !!}
+        {!! Form::label('description', "Descrição:") !!}
         {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
     </div>
 
     <div class ='form-group'>
-        {!! Form::submit('Add category', ['class' => "btn btn-primary"]) !!}
-        <a class="btn btn-primary" href="{{route('admin.categories.index')}}">Cancel</a>
+        {!! Form::submit('Confirmar', ['class' => "btn btn-primary"]) !!}
+        <a class="btn btn-primary" href="{{route('admin.categories.index')}}">Cancelar</a>
     </div>
 
     {!! Form::close() !!}

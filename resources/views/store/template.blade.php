@@ -28,8 +28,8 @@
                     <div class="col-sm-6">
                         <div class="contactinfo">
                             <ul class="nav nav-pills">
-                                <li><a href="#"><i class="fa fa-phone"></i> (19) 5555-5555</a></li>
-                                <li><a href="#"><i class="fa fa-envelope"></i> atendimento@schoolofnet.com</a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i> (22) 9 9205-1259</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i> houstonfernandes@yahoo.com.br</a></li>
                             </ul>
                         </div>
                     </div>
@@ -58,8 +58,7 @@
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="{{route('store.account.orders')}}"><i class="fa fa-user"></i> Minha conta</a></li>
-                                <li><a href="http://commerce.dev:10088/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                                <li><a href="{{route('store.account.orders')}}"><i class="fa fa-user"></i> Meus pedidos</a></li>
                                 <li><a href="{{route('store.cart')}}"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
 
                                 @if(auth()->check())
@@ -106,16 +105,13 @@
 
                                 <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
-                                        <li><a href="product-details.html">Product Details</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="cart.html">Cart</a></li>
-                                        <li><a href="login.html">Login</a></li>
+                                        <li><a href="{{route('store.cart')}}">Carrinho</a></li>
+                                        <li><a href="{{route('auth.login')}}">Login</a></li>
                                     </ul>
                                 </li>
 
 
-                                <li><a href="contact-us.html">Contato</a></li>
+                                <li><a href="#contact-us.html">Contato</a></li>
                             </ul>
                         </div>
                     </div>
@@ -161,7 +157,7 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="row">
-                    <p class="pull-left">Copyright © 2013 E-Shop Inc. All rights reserved.</p>
+                    <p class="pull-left">Copyright © 2016 E-Shop Inc. All rights reserved.</p>
                     <p class="pull-right">Designed by <span><a target="_blank" href="http://invoinn.com/">InvoInn</a></span></p>
                 </div>
             </div>

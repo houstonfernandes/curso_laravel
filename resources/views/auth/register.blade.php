@@ -9,7 +9,7 @@
 				<div class="panel-body">
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
+							<strong>Opa!</strong> Falhou ao validar dados.<br><br>
 							<ul>
 								@foreach ($errors->all() as $error)
 									<li>{{ $error }}</li>
@@ -98,7 +98,7 @@
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">
-									Register
+									Confirmar
 								</button>
 							</div>
 						</div>
@@ -108,4 +108,13 @@
 		</div>
 	</div>
 </div>
-@endsection
+@stop
+
+@section('js')
+	<script src="{{url('js/jquery.mask.min.js')}}"></script>
+	<script type="application/javascript">
+		$("[name=tel]").mask("(99)9999-9999");
+		$("[name=cel]").mask("(99)9 9999-9999");
+		$("[name=cep]").mask("99999-999");
+	</script>
+@stop

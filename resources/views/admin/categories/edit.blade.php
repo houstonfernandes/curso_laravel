@@ -12,18 +12,18 @@
     {!! Form::open(['route'=> ['admin.categories.update', $category->id],'method' =>'put']) !!}
 
     <div class ='form-group'>
-        {!! Form::label('name', "Name:") !!}
+        {!! Form::label('name', "Nome:") !!}
         {!! Form::text('name', $category->name, ['class' => 'form-control']) !!}
     </div>
 
     <div class ='form-group'>
-        {!! Form::label('description', "Description:") !!}
+        {!! Form::label('description', "Descrição:") !!}
         {!! Form::textarea('description', $category->description, ['class' => 'form-control']) !!}
     </div>
 
     <div class ='form-group'>
-        {!! Form::submit('Save category', ['class' => "btn btn-primary"]) !!}
-        <a class="btn btn-primary" href="{{route('admin.categories.index')}}">Cancel</a>
+        {!! Form::submit('Confirmar', ['class' => "btn btn-primary"]) !!}
+        <a class="btn btn-primary" href="{{route('admin.categories.index')}}">Cancelar</a>
     </div>
 
     {!! Form::close() !!}
