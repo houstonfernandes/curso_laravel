@@ -12,12 +12,8 @@ use CodeCommerce\Order;
 use CodeCommerce\OrderItem;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-//use PHPSC\PagSeguro\Requests\Checkout\CheckoutService;
-//use PHPSC\PagSeguro\Items\Item;
-
-use \PHPSC\PagSeguro\ValueObject\Payment\PaymentRequest;
-use \PHPSC\PagSeguro\ValueObject\Credentials;
-use \PHPSC\PagSeguro\ValueObject\Item;
+use PHPSC\PagSeguro\Requests\Checkout\CheckoutService;
+use PHPSC\PagSeguro\Items\Item;
 use \PHPSC\PagSeguro\PaymentService;
 
 
@@ -28,13 +24,16 @@ class CheckoutController extends Controller
         $this->middleware('auth');//usa usuario autenticado
     }
 
-    public function place(Order $orderModel, OrderItem $orderItem)
+    public function place(Order $orderModel, OrderItem $orderItem, CheckoutService $checkoutService)
     {
         if(!Session::has('cart')){
             return false;
         }
         $cart = Session::get('cart');
         if($cart->getTotal() > 0) {
+
+            $checkout = $checkoutService->createCheckoutBuilder();//pagseguro
+
             $order = $orderModel->create([
                 'user_id' => Auth::user()->id,          ////USUARIO autenticado
                 'total' => $cart->getTotal(),
@@ -42,6 +41,9 @@ class CheckoutController extends Controller
             ]);
 
             foreach($cart->all() as $k=>$item) {
+
+                $checkout->addItem(new Item($k, $item['name'], number_format($item['price'], 2, '.',''), $item['qtd']));//adiciona item ao pagseguro
+
                 $order->items()->create([//cria um OrderItem relacionando com este Order
                     'product_id' => $k,
                     'price' => $item['price'],
@@ -51,13 +53,17 @@ class CheckoutController extends Controller
 
             $cart->clear();
 
-         //   event(new CheckoutEvent($order)); //evento functionou uhuuuu ok
-            return view('store.order',compact('order','cart'));
+            $response = $checkoutService->checkout($checkout->getCheckout());//pagseguro
+
+         //   event(new CheckoutEvent($order)); //evento email functionou uhuuuu ok
+            //return view('store.order',compact('order','cart'));
+            return redirect($response->getRedirectionUrl());
         }
 
         $categories = Category::all();
         return view('store.order',['cart'=>'empty', 'categories' => $categories]);
     }
+
     public function test(CheckoutService $checkoutService)
     {
 
@@ -68,7 +74,7 @@ class CheckoutController extends Controller
 
         $response = $checkoutService->checkout($checkout);
 
-        redirect($response->getRedirectionUrl());
+        return redirect($response->getRedirectionUrl());
 
     }
 }
