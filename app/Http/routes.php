@@ -73,7 +73,8 @@ Route::group(['prefix' => '/', 'as' => 'store.'], function()
     {
         Route::get('checkout/place_order',['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
         Route::get('account/orders',['as' => 'account.orders', 'uses' => 'AccountController@orders']);
-        Route::get('checkout/test',['as' => 'checkout.test', 'uses' => 'CheckoutController@test']);
+        Route::get('checkout/retorno',['as' => 'checkout.retorno', 'uses' => 'CheckoutController@retornoPagSeguro']);
+        Route::get('checkout/testePagseguro',['as' => 'checkout.testePagseguro', 'uses' => 'CheckoutController@testePagseguro']);
     });
 
 });

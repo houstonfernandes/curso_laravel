@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use PHPSC\PagSeguro\Requests\Checkout\CheckoutService;
 use PHPSC\PagSeguro\Items\Item;
 use \PHPSC\PagSeguro\PaymentService;
+use PHPSC\PagSeguro\Purchases\Transactions\Locator;
 
 
 class CheckoutController extends Controller
@@ -34,24 +35,26 @@ class CheckoutController extends Controller
 
             $checkout = $checkoutService->createCheckoutBuilder();//pagseguro
 
-            $order = $orderModel->create([
+/*
+             $order = $orderModel->create([
                 'user_id' => Auth::user()->id,          ////USUARIO autenticado
                 'total' => $cart->getTotal(),
                 'status'=> 0
             ]);
-
+*/
             foreach($cart->all() as $k=>$item) {
 
                 $checkout->addItem(new Item($k, $item['name'], number_format($item['price'], 2, '.',''), $item['qtd']));//adiciona item ao pagseguro
-
+/*
                 $order->items()->create([//cria um OrderItem relacionando com este Order
                     'product_id' => $k,
                     'price' => $item['price'],
                     'qtd' => $item['qtd']
                 ]);
+*/
             }
 
-            $cart->clear();
+//            $cart->clear();//esvaziar carrinho
 
             $response = $checkoutService->checkout($checkout->getCheckout());//pagseguro
 
@@ -64,7 +67,52 @@ class CheckoutController extends Controller
         return view('store.order',['cart'=>'empty', 'categories' => $categories]);
     }
 
-    public function test(CheckoutService $checkoutService)
+    public function retornoPagSeguro(\Illuminate\Http\Request $request, Locator $service, Order $orderModel)
+    {
+        if(!Session::has('cart')){
+            return false;
+        }
+
+        $cart = Session::get('cart');
+
+
+        $transactionCode = $request->get('TransacaoID');//transaction_id');
+        $transaction = $service->getByCode($transactionCode);
+
+        $status = $transaction->getDetails()->getStatus();
+        $paymentType = $transaction->getPayment()->getPaymentMethod()->getType();
+        $netAmount = $transaction->getPayment()->getNetAmount();
+
+
+var_dump($transaction);
+exit('retorno do pag seguro recebido.');
+
+
+        // pedido gravar
+
+        $order = $orderModel->create([
+            'user_id' => Auth::user()->id,
+            'total' => $cart->getTotal(),
+            'status' => $status,
+            'status_pg'=>$status,
+            'transaction_code' => $transactionCode,
+            'payment_type_id' => $paymentType,
+            'netAmount' => $netAmount,
+        ]);
+
+        foreach($cart->all() as $k=>$item){ //itens de pedido
+            $order->items()->create(
+                ['product_id'=>$k, 'price'=>$item['price'], 'qtd'=>$item['qtd']]
+            );
+        }
+
+        $cart->clear();//limpar carrinho
+
+        return redirect()->route('orders.view');
+    }
+
+
+    public function testePagSeguro(CheckoutService $checkoutService)//teste pagseguro
     {
 
         $checkout = $checkoutService->createCheckoutBuilder()

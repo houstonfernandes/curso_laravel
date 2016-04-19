@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = ['user_id', 'total', 'status'];
+    protected $fillable = ['user_id', 'total', 'status','transaction_code', 'payment_type_id', 'netAmount'];
 
     public static $statusNames = [
         0 => 'Aguardando pagamento',
