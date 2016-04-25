@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use CodeCommerce\Category;
+use CodeCommerce\User;
 
 class UserTableSeeder extends Seeder
 {

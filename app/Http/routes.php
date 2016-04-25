@@ -68,12 +68,13 @@ Route::group(['prefix' => '/', 'as' => 'store.'], function()
     Route::put('cart/update/{id}',['as' => 'cart.update', 'uses' => 'CartController@update']);
     Route::get('cart/clean',['as' => 'cart.clean', 'uses' => 'CartController@cleanCart']);
 
+    Route::get('pagseguro/retorno',['as' => 'pagseguro.retorno', 'uses' => 'CheckoutController@retornoPagSeguro']);
+
     //rotas com autenticacao
     Route::group(['middleware' => 'auth'], function()
     {
         Route::get('checkout/place_order',['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
         Route::get('account/orders',['as' => 'account.orders', 'uses' => 'AccountController@orders']);
-        Route::get('checkout/retorno',['as' => 'checkout.retorno', 'uses' => 'CheckoutController@retornoPagSeguro']);
         Route::get('checkout/testePagseguro',['as' => 'checkout.testePagseguro', 'uses' => 'CheckoutController@testePagseguro']);
     });
 

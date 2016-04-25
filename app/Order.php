@@ -47,4 +47,14 @@ class Order extends Model
         return array_key_exists($status,self::$statusNames);
     }
 
+    public function status()
+    {
+        return $this->belongsTo('CodeCommerce\OrderStatus');
+    }
+
+    public function paymentType()
+    {
+        return $this->belongsTo('CodeCommerce\OrderPaymentType');
+    }
+
 }

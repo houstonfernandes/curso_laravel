@@ -12,7 +12,7 @@
                             <tr class="order-title">
                                 <td>Número: {{$order->id}} </td>
                                 <td>Data da compra: {{ date("d/m/Y h:i:s", strtotime($order->created_at)) }}</td>
-                                <td colspan="2">Status: {{ $order->statusName() }}</td>
+                                <td colspan="2">Status: {{ $order->status ? "Aprovado" : "Pendente"}}</td>
                             </tr>
                             <tr class="cart-menu">
                                 <td class="name">Nome</td>

@@ -70,26 +70,22 @@ class CheckoutController extends Controller
     public function retornoPagSeguro(\Illuminate\Http\Request $request, Locator $service, Order $orderModel)
     {
         if(!Session::has('cart')){
+            flash('carrinho vazio');
+            return redirect()->route('store.index');
             return false;
         }
 
         $cart = Session::get('cart');
 
 
-        $transactionCode = $request->get('TransacaoID');//transaction_id');
+        $transactionCode = $request->get('transaction_id');
         $transaction = $service->getByCode($transactionCode);
 
         $status = $transaction->getDetails()->getStatus();
         $paymentType = $transaction->getPayment()->getPaymentMethod()->getType();
         $netAmount = $transaction->getPayment()->getNetAmount();
 
-
-var_dump($transaction);
-exit('retorno do pag seguro recebido.');
-
-
         // pedido gravar
-
         $order = $orderModel->create([
             'user_id' => Auth::user()->id,
             'total' => $cart->getTotal(),
@@ -108,7 +104,7 @@ exit('retorno do pag seguro recebido.');
 
         $cart->clear();//limpar carrinho
 
-        return redirect()->route('orders.view');
+        return redirect()->route('store.account.orders    ');
     }
 
 
