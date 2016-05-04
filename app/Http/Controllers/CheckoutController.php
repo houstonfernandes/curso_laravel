@@ -104,7 +104,7 @@ class CheckoutController extends Controller
 
         $cart->clear();//limpar carrinho
 
-        return redirect()->route('store.account.orders    ');
+        return redirect()->route('store.account.orders');
     }
 
 
